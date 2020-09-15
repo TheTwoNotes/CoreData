@@ -18,10 +18,6 @@ struct ContactRow: View {
     }
 }
 
-/*
-    struct making up the main view where all the currently persisted Contact
-    enties from CoreData are displayed.
- */
 struct ContentView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
 

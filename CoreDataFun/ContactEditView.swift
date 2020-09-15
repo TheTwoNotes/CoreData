@@ -137,9 +137,3 @@ struct ContactEditView: View {
         }
     }
 }
-
-// struct ContactEditView_Previews: PreviewProvider {
-//    static var previews: some View {
-//		ContactEditView(contact: <#Contact#>)
-//    }
-// }
