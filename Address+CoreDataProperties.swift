@@ -7,12 +7,10 @@
 //
 //
 
-import Foundation
 import CoreData
-
+import Foundation
 
 extension Address {
-
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Address> {
         return NSFetchRequest<Address>(entityName: "Address")
     }

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2303B8D225116722001533A3 /* ContactEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2303B8D125116722001533A3 /* ContactEditView.swift */; };
+		2303B8D425116786001533A3 /* ContactAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2303B8D325116786001533A3 /* ContactAddView.swift */; };
+		2303B8DA25116C94001533A3 /* KeyboardResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2303B8D925116C94001533A3 /* KeyboardResponder.swift */; };
 		235A8F6624CF257800D0C5FB /* Address+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235A8F6224CF257800D0C5FB /* Address+CoreDataClass.swift */; };
 		235A8F6824CF257800D0C5FB /* Contact+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235A8F6424CF257800D0C5FB /* Contact+CoreDataClass.swift */; };
 		235A8F7C24CF68CF00D0C5FB /* Address+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235A8F7A24CF68CF00D0C5FB /* Address+CoreDataProperties.swift */; };
@@ -18,9 +21,13 @@
 		23CFA35F24CA09FF00A922CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 23CFA35E24CA09FF00A922CA /* Assets.xcassets */; };
 		23CFA36224CA09FF00A922CA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 23CFA36124CA09FF00A922CA /* Preview Assets.xcassets */; };
 		23CFA36524CA09FF00A922CA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23CFA36324CA09FF00A922CA /* LaunchScreen.storyboard */; };
+		23DA08B6251171C700A7C3D1 /* Extendables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23DA08B5251171C700A7C3D1 /* Extendables.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2303B8D125116722001533A3 /* ContactEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactEditView.swift; sourceTree = "<group>"; };
+		2303B8D325116786001533A3 /* ContactAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactAddView.swift; sourceTree = "<group>"; };
+		2303B8D925116C94001533A3 /* KeyboardResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardResponder.swift; sourceTree = "<group>"; };
 		235A8F6224CF257800D0C5FB /* Address+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Address+CoreDataClass.swift"; sourceTree = "<group>"; };
 		235A8F6424CF257800D0C5FB /* Contact+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Contact+CoreDataClass.swift"; sourceTree = "<group>"; };
 		235A8F7A24CF68CF00D0C5FB /* Address+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Address+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -34,6 +41,7 @@
 		23CFA36124CA09FF00A922CA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		23CFA36424CA09FF00A922CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		23CFA36624CA09FF00A922CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		23DA08B5251171C700A7C3D1 /* Extendables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extendables.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +86,10 @@
 				23CFA36624CA09FF00A922CA /* Info.plist */,
 				23CFA35924CA09FE00A922CA /* CoreDataFun.xcdatamodeld */,
 				23CFA36024CA09FF00A922CA /* Preview Content */,
+				2303B8D125116722001533A3 /* ContactEditView.swift */,
+				2303B8D325116786001533A3 /* ContactAddView.swift */,
+				2303B8D925116C94001533A3 /* KeyboardResponder.swift */,
+				23DA08B5251171C700A7C3D1 /* Extendables.swift */,
 			);
 			path = CoreDataFun;
 			sourceTree = "<group>";
@@ -164,11 +176,15 @@
 				23CFA35B24CA09FE00A922CA /* CoreDataFun.xcdatamodeld in Sources */,
 				235A8F6824CF257800D0C5FB /* Contact+CoreDataClass.swift in Sources */,
 				23CFA35624CA09FE00A922CA /* AppDelegate.swift in Sources */,
+				2303B8DA25116C94001533A3 /* KeyboardResponder.swift in Sources */,
 				235A8F6624CF257800D0C5FB /* Address+CoreDataClass.swift in Sources */,
 				23CFA35D24CA09FE00A922CA /* ContentView.swift in Sources */,
 				23CFA35824CA09FE00A922CA /* SceneDelegate.swift in Sources */,
+				2303B8D225116722001533A3 /* ContactEditView.swift in Sources */,
 				235A8F7D24CF68CF00D0C5FB /* Contact+CoreDataProperties.swift in Sources */,
 				235A8F7C24CF68CF00D0C5FB /* Address+CoreDataProperties.swift in Sources */,
+				2303B8D425116786001533A3 /* ContactAddView.swift in Sources */,
+				23DA08B6251171C700A7C3D1 /* Extendables.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

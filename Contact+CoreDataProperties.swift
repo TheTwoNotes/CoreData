@@ -7,12 +7,10 @@
 //
 //
 
-import Foundation
 import CoreData
-
+import Foundation
 
 extension Contact {
-
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Contact> {
         return NSFetchRequest<Contact>(entityName: "Contact")
     }
@@ -38,11 +36,11 @@ extension Contact {
     public var wrappedLastName: String {
         lastName ?? "Unknown Last Name"
     }
-    
+
     public var fullName: String {
         return "\(wrappedFirstName) \(wrappedLastName)"
     }
-    
+
     public var fullBySurname: String {
         return "\(wrappedLastName), \(wrappedFirstName)"
     }

@@ -7,10 +7,8 @@
 //
 //
 
-import Foundation
 import CoreData
+import Foundation
 
 @objc(Contact)
-public class Contact: NSManagedObject {
-
-}
+public class Contact: NSManagedObject {}
