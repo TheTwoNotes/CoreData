@@ -18,13 +18,13 @@ struct ContactEditView: View {
     @State var editButtonText: String = "Edit"
     @State var newFirstName: String = ""
     @State var newLastName: String = ""
-    @State var newAreaCode: String = ""
-    @State var newPhone: String = ""
+    @ObservedObject var newAreaCode = NumericFieldViewModel(limit: 3, decimalAllowed: false, numberMax: 999)
+    @ObservedObject var newPhone = NumericFieldViewModel(limit: 7, decimalAllowed: false, numberMax: 9_999_999)
 
     @State var newStreet: String = ""
     @State var newCity: String = ""
     @State var newState: String = ""
-    @State var newZipCode: String = ""
+    @ObservedObject var newZipCode = NumericFieldViewModel(limit: 5, decimalAllowed: false, numberMax: 99999)
 
     @Environment(\.managedObjectContext) var moc
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -65,15 +65,19 @@ struct ContactEditView: View {
                 }
 
                 Section(header: Text("Phone Number")) {
-                    TextField("Area Code", text: $newAreaCode)
-                    TextField("Phone Nbr", text: $newPhone)
+                    TextField("Area Code", text: $newAreaCode.enteredTextValue)
+                        .keyboardType(.decimalPad)
+
+                    TextField("Phone Nbr", text: $newPhone.enteredTextValue)
+                        .keyboardType(.decimalPad)
                 }
 
                 Section(header: Text("Address")) {
                     TextField("Street", text: $newStreet)
                     TextField("City", text: $newCity)
                     TextField("State", text: $newState)
-                    TextField("Zip Coce", text: $newZipCode)
+                    TextField("Zip Coce", text: $newZipCode.enteredTextValue)
+                        .keyboardType(.decimalPad)
                 }
             }
             .background(Color.blue)
@@ -101,14 +105,14 @@ struct ContactEditView: View {
     func loadContactEntity() {
         newFirstName = contact.wrappedFirstName
         newLastName = contact.wrappedLastName
-        newAreaCode = contact.wrappedAreaCode
-        newPhone = contact.wrappedPhone
+        newAreaCode.enteredTextValue = contact.wrappedAreaCode
+        newPhone.enteredTextValue = contact.wrappedPhone
 
         let address: Address = contact.address ?? Address(context: moc)
         newStreet = address.wrappedStreet
         newCity = address.wrappedCity
         newState = address.wrappedState
-        newZipCode = address.wrappedZipCode
+        newZipCode.enteredTextValue = address.wrappedZipCode
     }
 
     /*
@@ -118,15 +122,15 @@ struct ContactEditView: View {
         UIApplication.shared.endEditing()
         contact.firstName = newFirstName
         contact.lastName = newLastName
-        contact.areaCode = newAreaCode
-        contact.phone = newPhone
+        contact.areaCode = newAreaCode.enteredTextValue
+        contact.phone = newPhone.enteredTextValue
 
         let address: Address = contact.address ?? Address(context: moc)
 
         address.street = newStreet
         address.city = newCity
         address.state = newState
-        address.zipCode = newZipCode
+        address.zipCode = newZipCode.enteredTextValue
 
         contact.address = address
 

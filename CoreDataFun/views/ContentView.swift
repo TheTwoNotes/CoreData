@@ -8,16 +8,6 @@
 
 import SwiftUI
 
-struct ContactRow: View {
-    @ObservedObject var contact: Contact
-
-    var body: some View {
-        Text(contact.fullBySurname)
-            .padding()
-            .navigationBarTitle(Text("Contact List"), displayMode: .inline)
-    }
-}
-
 struct ContentView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
 

@@ -9,20 +9,21 @@
 import SwiftUI
 
 struct ContactAddView: View {
+    @Environment(\.managedObjectContext) var moc
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+
     @ObservedObject private var keyboardResponder = KeyboardResponder()
 
     @State var newFirstName: String = ""
     @State var newLastName: String = ""
-    @State var newAreaCode: String = ""
-    @State var newPhone: String = ""
+
+    @ObservedObject var newAreaCode = NumericFieldViewModel(limit: 3, decimalAllowed: false, numberMax: 999)
+    @ObservedObject var newPhone = NumericFieldViewModel(limit: 7, decimalAllowed: false, numberMax: 9_999_999)
 
     @State var newStreet: String = ""
     @State var newCity: String = ""
     @State var newState: String = ""
     @State var newZipCode: String = ""
-
-    @Environment(\.managedObjectContext) var moc
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
     var body: some View {
         VStack {
@@ -51,15 +52,18 @@ struct ContactAddView: View {
                 }
 
                 Section(header: Text("Phone Number")) {
-                    TextField("Area Code", text: $newAreaCode)
-                    TextField("Phone Nbr", text: $newPhone)
+                    TextField("Area Code", text: $newAreaCode.enteredTextValue)
+                        .keyboardType(.decimalPad)
+                    TextField("Phone Nbr", text: $newPhone.enteredTextValue)
+                        .keyboardType(.decimalPad)
                 }
 
                 Section(header: Text("Address")) {
                     TextField("Street", text: $newStreet)
                     TextField("City", text: $newCity)
                     TextField("State", text: $newState)
-                    TextField("Zip Coce", text: $newZipCode)
+                    TextField("Zip Code", text: $newZipCode)
+                        .keyboardType(.decimalPad)
                 }
             }
         }
@@ -86,8 +90,8 @@ struct ContactAddView: View {
         let contact = Contact(context: moc)
         contact.firstName = newFirstName
         contact.lastName = newLastName
-        contact.areaCode = newAreaCode
-        contact.phone = newPhone
+        contact.areaCode = newAreaCode.enteredTextValue
+        contact.phone = newPhone.enteredTextValue
 
         let address = Address(context: moc)
         address.street = newStreet
