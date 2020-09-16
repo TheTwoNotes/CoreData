@@ -27,26 +27,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     lazy var persistentContainer: NSPersistentCloudKitContainer = {
         let container = NSPersistentCloudKitContainer(name: "CoreDataFun")
-		
-		guard let description = container.persistentStoreDescriptions.first else {
-			fatalError("No descriptions found.")
-		}
-		description.setOption(true as NSObject, forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
-		
+
+        guard let description = container.persistentStoreDescriptions.first else {
+            fatalError("No descriptions found.")
+        }
+        description.setOption(true as NSObject, forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
+
         container.loadPersistentStores(completionHandler: { _, error in
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })
-		
-		container.viewContext.automaticallyMergesChangesFromParent = true
-		container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
-		
-		NotificationCenter.default.addObserver(self, selector: #selector(self.processUpdate), name: .NSPersistentStoreRemoteChange, object: nil)
-		
+
+        container.viewContext.automaticallyMergesChangesFromParent = true
+        container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+
+        NotificationCenter.default.addObserver(self, selector: #selector(self.processUpdate), name: .NSPersistentStoreRemoteChange, object: nil)
+
         return container
     }()
-	
+
     // MARK: - Core Data Saving support
 
     func saveContext() {
@@ -60,25 +60,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
-	
-	@objc func processUpdate(notification: NSNotification) {
-		operationQueue.addOperation {
-			// get our content
-			let context = self.persistentContainer.newBackgroundContext()
-			context.performAndWait {
-				// get list items out of store
-				
-				// reorder items
-				
-				// save if we need to save
-			}
-		}
-	}
-	
-	// Prevents race conditions
-	lazy var operationQueue: OperationQueue = {
-		var queue = OperationQueue()
-		queue.maxConcurrentOperationCount = 1
-		return queue
-	}()
+
+	// This is where intermediate data handling could be done if required...
+    @objc func processUpdate(notification _: NSNotification) {
+        operationQueue.addOperation {
+            // get our content
+            let context = self.persistentContainer.newBackgroundContext()
+            context.performAndWait {
+                // get list records from store
+
+                // reorder records or other behavior required
+
+                // if saving required...do so here
+            }
+        }
+    }
+
+    // Prevents race conditions
+    lazy var operationQueue: OperationQueue = {
+        var queue = OperationQueue()
+        queue.maxConcurrentOperationCount = 1
+        return queue
+    }()
 }
