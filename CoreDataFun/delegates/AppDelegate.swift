@@ -25,24 +25,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // MARK: - Core Data stack
 
-    lazy var persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "CoreDataFun")
+    lazy var persistentContainer: NSPersistentCloudKitContainer = {
+        let container = NSPersistentCloudKitContainer(name: "CoreDataFun")
+		
+		guard let description = container.persistentStoreDescriptions.first else {
+			fatalError("No descriptions found.")
+		}
+		description.setOption(true as NSObject, forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
+		
         container.loadPersistentStores(completionHandler: { _, error in
             if let error = error as NSError? {
-                /*
-                 Typical reasons for an error here include:
-                 * The parent directory does not exist, cannot be created, or disallows writing.
-                 * The persistent store is not accessible, due to permissions or data protection when the device is locked.
-                 * The device is out of space.
-                 * The store could not be migrated to the current model version.
-                 Check the error message to determine what the actual problem was.
-                 */
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })
+		
+		container.viewContext.automaticallyMergesChangesFromParent = true
+		container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+		
+		NotificationCenter.default.addObserver(self, selector: #selector(self.processUpdate), name: .NSPersistentStoreRemoteChange, object: nil)
+		
         return container
     }()
-
+	
     // MARK: - Core Data Saving support
 
     func saveContext() {
@@ -56,4 +60,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
+	
+	@objc func processUpdate(notification: NSNotification) {
+		operationQueue.addOperation {
+			// get our content
+			let context = self.persistentContainer.newBackgroundContext()
+			context.performAndWait {
+				// get list items out of store
+				
+				// reorder items
+				
+				// save if we need to save
+			}
+		}
+	}
+	
+	// Prevents race conditions
+	lazy var operationQueue: OperationQueue = {
+		var queue = OperationQueue()
+		queue.maxConcurrentOperationCount = 1
+		return queue
+	}()
 }
