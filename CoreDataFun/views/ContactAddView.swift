@@ -14,12 +14,11 @@ struct ContactAddView: View {
 
     @ObservedObject private var keyboardResponder = KeyboardResponder()
 
-    @State var newFirstName: String = ""
-    @State var newLastName: String = ""
-
     @ObservedObject var newAreaCode = NumericFieldViewModel(limit: 3, decimalAllowed: false, numberMax: 999)
     @ObservedObject var newPhone = NumericFieldViewModel(limit: 7, decimalAllowed: false, numberMax: 9_999_999)
 
+	@State var newFirstName: String = ""
+	@State var newLastName: String = ""
     @State var newStreet: String = ""
     @State var newCity: String = ""
     @State var newState: String = ""
@@ -88,6 +87,7 @@ struct ContactAddView: View {
      */
     func insertNewContactCard() {
         let contact = Contact(context: moc)
+		contact.id = UUID()
         contact.firstName = newFirstName
         contact.lastName = newLastName
         contact.areaCode = newAreaCode.enteredTextValue
